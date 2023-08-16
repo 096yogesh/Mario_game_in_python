@@ -1,0 +1,68 @@
+
+
+import pygame
+
+# Initialize Pygame
+pygame.init()
+
+# Set the width and height of the screen
+screen_width = 700
+screen_height = 400
+screen = pygame.display.set_mode([screen_width, screen_height])
+
+# Set the title of the window
+pygame.display.set_caption("Mario Game")
+
+# Create a clock object to control the frame rate
+clock = pygame.time.Clock()
+
+# Load the background image
+background_image = pygame.image.load("background.png").convert()
+
+# Load the Mario image
+mario_image = pygame.image.load("mario.png").convert()
+mario_image.set_colorkey((255, 255, 255))
+
+# Set the initial position of Mario
+mario_x = 50
+mario_y = 300
+
+# Set the speed of Mario
+mario_speed = 5
+
+# Create a boolean variable to check if the game is running
+running = True
+
+# Start the game loop
+while running:
+    # Handle events
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+
+    # Handle keyboard input
+    keys = pygame.key.get_pressed()
+    if keys[pygame.K_LEFT]:
+        mario_x -= mario_speed
+    if keys[pygame.K_RIGHT]:
+        mario_x += mario_speed
+    if keys[pygame.K_UP]:
+        mario_y -= mario_speed
+    if keys[pygame.K_DOWN]:
+        mario_y += mario_speed
+
+    # Draw the background and Mario
+    screen.blit(background_image, [0, 0])
+    screen.blit(mario_image, [mario_x, mario_y])
+
+    # Update the screen
+    pygame.display.flip()
+
+    # Set the frame rate
+    clock.tick(60)
+
+# Quit Pygame
+pygame.quit()
+
+
+Note that this code is just an example and you will need to have the background and Mario images in your directory to use it. You can also modify the code to add more features and functionality to the game.
